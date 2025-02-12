@@ -1,0 +1,33 @@
+﻿<script>
+
+	//Game starting Action 
+	function startGame()
+	{
+		fatchBananaApi();
+	}
+
+	// fatch GameUI
+	function fatchBananaApi()
+	{
+		$.ajax({
+			url:"Home/MathGameUI",
+			type:"GET",
+			success: function(data){
+				alert("success");
+				$("#game-ui-container").html(data);
+			},
+			error: function(data){
+				alert("error!");
+			},
+
+		});
+	
+	}
+
+	//set game time
+	function displayTimer()
+	{
+
+	}
+
+</script>

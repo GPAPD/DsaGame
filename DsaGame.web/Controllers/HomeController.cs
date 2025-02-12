@@ -1,4 +1,5 @@
 using DsaGame.Web.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
 
@@ -13,12 +14,8 @@ namespace DsaGame.Web.Controllers
 			_logger = logger;
 		}
 
-		public IActionResult Index()
-		{
-			return View();
-		}
-
-		public IActionResult Privacy()
+        [Authorize]
+        public IActionResult Index()
 		{
 			return View();
 		}
@@ -27,6 +24,19 @@ namespace DsaGame.Web.Controllers
 		public IActionResult Error()
 		{
 			return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
+		}
+
+        [Authorize]
+		[HttpGet]
+        public IActionResult MathGameUI() 
+		{
+
+			return PartialView();
+		}
+
+		private string  BanaApiCall() 
+		{
+			return null;
 		}
 	}
 }

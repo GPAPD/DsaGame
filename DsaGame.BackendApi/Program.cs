@@ -4,6 +4,7 @@ using DsaGame.BackendApi.Service.IService;
 using DsaGame.BackendApi.Service;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using System.Text;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -19,6 +20,11 @@ builder.Services.AddIdentity<ApplicationUser, IdentityRole>().AddEntityFramework
 
 //Congigure JWTOptions
 builder.Services.Configure<JwtOptions>(builder.Configuration.GetSection("ApiSettings:JwtOptions"));
+
+var jwtOptionsSection = builder.Configuration.GetSection("ApiSettings:JwtOptions");
+var jwtOptions = jwtOptionsSection.Get<JwtOptions>();
+
+var key = Encoding.ASCII.GetBytes(jwtOptions.Secret);
 
 //inject Services
 builder.Services.AddScoped<IAuthService, AuthService>();
