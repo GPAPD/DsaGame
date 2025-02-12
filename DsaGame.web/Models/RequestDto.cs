@@ -1,6 +1,6 @@
-﻿using static DsaGame.web.Utility.SD;
+﻿using static DsaGame.Web.Utility.SD;
 
-namespace DsaGame.web.Models
+namespace DsaGame.Web.Models
 {
     public class RequestDto
     {

@@ -1,8 +1,8 @@
-using DsaGame.web.Models;
+using DsaGame.Web.Models;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
 
-namespace DsaGame.web.Controllers
+namespace DsaGame.Web.Controllers
 {
 	public class HomeController : Controller
 	{

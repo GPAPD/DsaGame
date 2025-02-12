@@ -1,6 +1,6 @@
-﻿using DsaGame.web.Models;
-using DsaGame.web.Service.IService;
-using DsaGame.web.Utility;
+﻿using DsaGame.Web.Models;
+using DsaGame.Web.Service.IService;
+using DsaGame.Web.Utility;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Mvc;
@@ -9,7 +9,7 @@ using Newtonsoft.Json;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 
-namespace DsaGame.web.Controllers
+namespace DsaGame.Web.Controllers
 {
     public class AuthController : Controller
     {

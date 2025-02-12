@@ -1,4 +1,4 @@
-﻿namespace DsaGame.web.Models
+﻿namespace DsaGame.Web.Models
 {
     public class LogInResponceDto
     {

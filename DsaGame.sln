@@ -1,9 +1,9 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
-VisualStudioVersion = 17.12.35707.178 d17.12
+VisualStudioVersion = 17.12.35707.178
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DsaGame.web", "DsaGame.web\DsaGame.web.csproj", "{76BF9479-4A3F-4016-AC0E-54B5F5AAF657}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DsaGame.Web", "DsaGame.web\DsaGame.Web.csproj", "{76BF9479-4A3F-4016-AC0E-54B5F5AAF657}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DsaGame.BackendApi", "DsaGame.BackendApi\DsaGame.BackendApi.csproj", "{4616A77C-8577-4C0E-A29E-688A9E609165}"
 EndProject

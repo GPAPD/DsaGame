@@ -1,6 +1,6 @@
-using DsaGame.web.Service.IService;
-using DsaGame.web.Service;
-using DsaGame.web.Utility;
+using DsaGame.Web.Service.IService;
+using DsaGame.Web.Service;
+using DsaGame.Web.Utility;
 using Microsoft.AspNetCore.Authentication.Cookies;
 
 var builder = WebApplication.CreateBuilder(args);

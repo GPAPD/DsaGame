@@ -1,6 +1,6 @@
-﻿using DsaGame.web.Models;
+﻿using DsaGame.Web.Models;
 
-namespace DsaGame.web.Service.IService
+namespace DsaGame.Web.Service.IService
 {
     public interface IAuthService
     {

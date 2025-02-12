@@ -1,11 +1,11 @@
-﻿using static DsaGame.web.Utility.SD;
+﻿using static DsaGame.Web.Utility.SD;
 using static System.Runtime.InteropServices.JavaScript.JSType;
 using System;
-using DsaGame.web.Service.IService;
-using DsaGame.web.Utility;
-using DsaGame.web.Models;
+using DsaGame.Web.Service.IService;
+using DsaGame.Web.Utility;
+using DsaGame.Web.Models;
 
-namespace DsaGame.web.Service
+namespace DsaGame.Web.Service
 {
     public class AuthService : IAuthService
     {

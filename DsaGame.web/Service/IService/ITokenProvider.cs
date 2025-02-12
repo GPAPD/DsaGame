@@ -1,4 +1,4 @@
-﻿namespace DsaGame.web.Service.IService
+﻿namespace DsaGame.Web.Service.IService
 {
     public interface ITokenProvider
     {

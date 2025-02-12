@@ -1,8 +1,8 @@
-﻿using DsaGame.web.Service.IService;
-using DsaGame.web.Utility;
+﻿using DsaGame.Web.Service.IService;
+using DsaGame.Web.Utility;
 using Newtonsoft.Json.Linq;
 
-namespace DsaGame.web.Service
+namespace DsaGame.Web.Service
 {
     public class TokenProvider : ITokenProvider
     {

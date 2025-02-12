@@ -1,4 +1,4 @@
-﻿namespace DsaGame.web.Utility
+﻿namespace DsaGame.Web.Utility
 {
     public class SD
     {

@@ -1,11 +1,11 @@
-﻿using DsaGame.web.Models;
-using DsaGame.web.Service.IService;
+﻿using DsaGame.Web.Models;
+using DsaGame.Web.Service.IService;
 using Newtonsoft.Json;
 using System.Net;
 using System.Text;
-using static DsaGame.web.Utility.SD;
+using static DsaGame.Web.Utility.SD;
 
-namespace DsaGame.web.Service
+namespace DsaGame.Web.Service
 {
     public class BaseService : IBaseService
     {

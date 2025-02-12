@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace DsaGame.web.Models
+namespace DsaGame.Web.Models
 {
     public class LogInRequestDto
     {
