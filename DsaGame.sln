@@ -1,0 +1,28 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.12.35707.178 d17.12
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DsaGame.web", "DsaGame.web\DsaGame.web.csproj", "{76BF9479-4A3F-4016-AC0E-54B5F5AAF657}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DsaGame.BackendApi", "DsaGame.BackendApi\DsaGame.BackendApi.csproj", "{4616A77C-8577-4C0E-A29E-688A9E609165}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{76BF9479-4A3F-4016-AC0E-54B5F5AAF657}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{76BF9479-4A3F-4016-AC0E-54B5F5AAF657}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{76BF9479-4A3F-4016-AC0E-54B5F5AAF657}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{76BF9479-4A3F-4016-AC0E-54B5F5AAF657}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4616A77C-8577-4C0E-A29E-688A9E609165}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4616A77C-8577-4C0E-A29E-688A9E609165}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4616A77C-8577-4C0E-A29E-688A9E609165}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4616A77C-8577-4C0E-A29E-688A9E609165}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
