@@ -1,4 +1,4 @@
-﻿using ComWeb.Models;
+﻿using DsaGame.web.Models;
 
 namespace DsaGame.web.Service.IService
 {

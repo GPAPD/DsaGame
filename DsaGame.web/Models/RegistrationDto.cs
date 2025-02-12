@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace ComWeb.Models
+namespace DsaGame.web.Models
 {
     public class RegistrationDto
     {
@@ -11,8 +11,8 @@ namespace ComWeb.Models
         [Required]
         public string PhoneNumber { get; set; }
         [Required]
-        public  string Password { get; set; }
+        public string Password { get; set; }
 
-        public  string? Role { get; set; }
+        public string? Role { get; set; }
     }
 }

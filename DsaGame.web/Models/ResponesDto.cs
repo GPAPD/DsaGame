@@ -1,11 +1,11 @@
-﻿namespace ComWeb.Models
+﻿namespace DsaGame.web.Models
 {
-	public class ResponesDto
-	{
-		public object? Result { get; set; }
+    public class ResponesDto
+    {
+        public object? Result { get; set; }
 
-		public bool IsSuccess { get; set; } = false;
+        public bool IsSuccess { get; set; } = false;
 
-		public string Message { get; set; } = "";
-	}
+        public string Message { get; set; } = "";
+    }
 }

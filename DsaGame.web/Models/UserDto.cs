@@ -1,4 +1,4 @@
-﻿namespace ComWeb.Models
+﻿namespace DsaGame.web.Models
 {
     public class UserDto
     {
