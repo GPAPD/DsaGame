@@ -1,6 +1,41 @@
-﻿
-<div>
-	<h1>
-		testing
-	</h1>
+﻿@model MathGameModel
+<div class="row row-col-md-12">
+
+	<style>
+		.timer {
+			position: absolute;
+			right: 15px;
+			background: rgba(0, 0, 0, 0.8);
+			color: white;
+			padding: 8px 10px;
+			border-radius: 20px;
+			font-size: 16px;
+			font-weight: bold;
+			width: 40px;
+			text-align: center;
+			
+		}
+	</style>
+
+	@if (Model.BananaResponse !=  null) 
+	{
+		<div id="timer" class="timer"></div>
+
+		<div class="text-center">
+			<div class="row">
+
+				<img src="@Model.BananaResponse.Question" alt="Question" />
+
+			</div>
+			<div class="row">
+				<div class="col-md-2 offset-md-2">
+					<input placeholder="Answer" type="number" />
+				</div>
+				<div class="col-md-2 offset-md-4">
+					<input class="btn btn-success" value="Submit" type="button" onclick="CheckAnswer()" />
+				</div>
+			</div>
+		</div>
+	}
+
 </div>

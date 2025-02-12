@@ -1,33 +1,69 @@
-﻿<script>
+﻿<script type="text/javascript">
 
-	//Game starting Action 
-	function startGame()
-	{
-		fatchBananaApi();
-	}
+    // Game starting Action
+    function startGame() 
+    {
+        fetchBananaApi();
+    }
 
-	// fatch GameUI
-	function fatchBananaApi()
-	{
-		$.ajax({
-			url:"Home/MathGameUI",
-			type:"GET",
-			success: function(data){
-				alert("success");
-				$("#game-ui-container").html(data);
-			},
-			error: function(data){
-				alert("error!");
-			},
+    // Fetch Game UI
+    function fetchBananaApi() 
+    {
+        $.ajax({
+            url: "Home/MathGameUI",
+            type: "GET",
+            success: function(data) {
+                alert("success");
+                $("#game-ui-container").html(data);
+                displayTimer(); // Display timer when UI is fetched
+            },
+            error: function()
+            {
+                alert("error!");
+            }
+        });
+    }
 
-		});
-	
-	}
+    // Set game time
+    function displayTimer() 
+    {
+        let timeLeft = 12; // Initial time
+        const timerElement = $("#timer");
 
-	//set game time
-	function displayTimer()
-	{
+        timerElement.text(timeLeft); // Set initial timer value
 
-	}
+        function startTimer() {
+            const countdown = setInterval(() => {
+                timeLeft--;
+                timerElement.text(timeLeft); // Update the timer value
+
+                if (timeLeft <= 0) {
+                    clearInterval(countdown);
+                    timerElement.text("0");
+                    gameOverScreen();
+                }
+            }, 1000);
+        }
+
+        startTimer();
+    }
+
+    // Game Over Screen
+    function gameOverScreen() 
+    {
+        $.ajax({
+            url: "Home/GameOverScreen",
+            type: "GET",
+            success: function(data) 
+            {
+                alert("Game Over!");
+                $("#game-ui-container").html(data);
+            },
+            error: function() 
+            {
+                alert("error!");
+            }
+        });
+    }
 
 </script>

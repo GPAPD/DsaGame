@@ -1,5 +1,6 @@
 ﻿using DsaGame.Web.Models;
 using DsaGame.Web.Service.IService;
+using DsaGame.Web.Utility;
 using Newtonsoft.Json;
 using System.Net;
 using System.Text;
@@ -22,7 +23,7 @@ namespace DsaGame.Web.Service
         {
             try
             {
-                HttpClient httpClient = _httpClientFactory.CreateClient("ComGroup");
+                HttpClient httpClient = _httpClientFactory.CreateClient("DsaGame");
                 HttpRequestMessage message = new();
                 message.Headers.Add("Accsepts", "application/json");
                 //token
@@ -69,7 +70,22 @@ namespace DsaGame.Web.Service
                         return new ResponesDto() { IsSuccess = false, Message = "InternalServerError" };
                     default:
                         var apiContent = await apiRsponse.Content.ReadAsStringAsync();
-                        var apiResponseDto = JsonConvert.DeserializeObject<ResponesDto>(apiContent);
+
+                        ResponesDto apiResponseDto;
+
+                        if (requestDto.Url.Contains(SD.BananaAPIBase))
+                        {
+                            var data = JsonConvert.DeserializeObject<BananaResponse>(apiContent);
+                            if (data!= null) 
+                            {
+                                apiResponseDto = new ResponesDto() { IsSuccess = true, Result = data, Message = "featch Successed" };
+                                return apiResponseDto;
+                            }
+
+                        }
+                        
+                        apiResponseDto = JsonConvert.DeserializeObject<ResponesDto>(apiContent);
+                        
                         return apiResponseDto;
 
                 }
