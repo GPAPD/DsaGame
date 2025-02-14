@@ -1,6 +1,6 @@
 ﻿using static DsaGame.Web.Utility.SD;
 
-namespace DsaGame.Web.Models
+namespace DsaGame.Web.Models.dtos
 {
     public class RequestDto
     {

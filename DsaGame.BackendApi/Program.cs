@@ -27,6 +27,7 @@ var jwtOptions = jwtOptionsSection.Get<JwtOptions>();
 var key = Encoding.ASCII.GetBytes(jwtOptions.Secret);
 
 //inject Services
+builder.Services.AddScoped<IScoreData, ScoreData>();
 builder.Services.AddScoped<IAuthService, AuthService>();
 builder.Services.AddScoped<IJwtTokenGenerator, JwtTokenGenerator>();
 

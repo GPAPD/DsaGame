@@ -3,7 +3,7 @@ using static System.Runtime.InteropServices.JavaScript.JSType;
 using System;
 using DsaGame.Web.Service.IService;
 using DsaGame.Web.Utility;
-using DsaGame.Web.Models;
+using DsaGame.Web.Models.dtos;
 
 namespace DsaGame.Web.Service
 {

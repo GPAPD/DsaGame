@@ -1,4 +1,4 @@
-﻿using DsaGame.Web.Models;
+﻿using DsaGame.Web.Models.dtos;
 
 namespace DsaGame.Web.Service.IService
 {

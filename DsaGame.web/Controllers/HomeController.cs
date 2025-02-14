@@ -1,4 +1,5 @@
 using DsaGame.Web.Models;
+using DsaGame.Web.Models.dtos;
 using DsaGame.Web.Service.IService;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -8,7 +9,7 @@ using System.Diagnostics;
 
 namespace DsaGame.Web.Controllers
 {
-	public class HomeController : Controller
+    public class HomeController : Controller
 	{
 		private readonly ILogger<HomeController> _logger;
 		private readonly IBananaService _bananaService;
@@ -52,6 +53,7 @@ namespace DsaGame.Web.Controllers
 		[HttpGet]
 		public async Task<IActionResult> GameOverScreen() 
 		{
+			//var model = 
 
 			return PartialView();
 		}

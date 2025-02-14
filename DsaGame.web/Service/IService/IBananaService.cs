@@ -1,4 +1,4 @@
-﻿using DsaGame.Web.Models;
+﻿using DsaGame.Web.Models.dtos;
 using System.Security.Cryptography.X509Certificates;
 
 namespace DsaGame.Web.Service.IService

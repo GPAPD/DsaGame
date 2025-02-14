@@ -1,4 +1,4 @@
-﻿namespace DsaGame.Web.Models
+﻿namespace DsaGame.Web.Models.dtos
 {
     public class UserDto
     {

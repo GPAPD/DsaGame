@@ -1,4 +1,4 @@
-﻿using DsaGame.Web.Models;
+﻿using DsaGame.Web.Models.dtos;
 using DsaGame.Web.Service.IService;
 using DsaGame.Web.Utility;
 using Newtonsoft.Json;
