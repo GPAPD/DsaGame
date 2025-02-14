@@ -1,9 +1,36 @@
-﻿
+﻿@model GameOverScreenModel
+
 <div class="game-over-container">
     <h1>GAME OVER</h1>
+
+    <table class="score-table">
+        <tr>
+            <th>Rank</th>
+            <th>Player</th>
+            <th>Level</th>
+            <th>Score</th>
+        </tr>
+        <tr>
+            @{
+                foreach (var s in Model.ScoreList) 
+                {
+                    if(s.IsLegit)
+                    {
+                        <td>1</td>
+                        <td>@s.User.Name</td>
+                        <td >@s.GameLevel</td>
+                        <td >@s.Points</td>
+                    }
+                }
+            }
+        </tr>
+        <!-- Add more rows dynamically if needed -->
+    </table>
+
     <button class="retry-btn" onclick="window.location.reload();">
         Try Again
     </button>
+
     <div class="subtext">
         Better luck next time!
     </div>
@@ -14,18 +41,41 @@
         display: flex;
         flex-direction: column;
         align-items: center;
+        height: 100vh; /* Set a fixed height */
+        overflow: hidden;
+        background-size: 110% 110%;
+		background-image: url('assets/gameoverbg.jpg');
+        color:white;
     }
 
     h1 {
         font-size: 48px;
         margin-bottom: 20px;
         text-transform: uppercase;
-        /* Glow effect on text */
         text-shadow: 0 0 10px rgba(255, 255, 255, 0.8);
     }
 
+    .score-table {
+        margin-bottom: 20px;
+        border-collapse: collapse;
+        width: 80%;
+        max-width: 400px;
+        text-align: center;
+        color:white;
+    }
+
+    .score-table th, .score-table td {
+        border: 1px solid #fff;
+        padding: 10px;
+    }
+
+    .score-table th {
+        background-color: #ff5858;
+        color: #fff;
+    }
+
     .retry-btn {
-        background: #ff5858; /* Red/Orange button color */
+        background: #ff5858;
         border: none;
         border-radius: 30px;
         padding: 15px 30px;
@@ -35,12 +85,11 @@
         cursor: pointer;
         text-transform: uppercase;
         transition: 0.3s ease;
-        /* Subtle glow effect around the button */
         box-shadow: 0 0 15px rgba(255, 88, 88, 0.6);
     }
 
     .retry-btn:hover {
-        background: #ff3b3b; /* Darker red on hover */
+        background: #ff3b3b;
         box-shadow: 0 0 20px rgba(255, 59, 59, 0.8);
     }
 
@@ -50,3 +99,8 @@
         opacity: 0.8;
     }
 </style>
+
+@* <script>
+    // Example: Set the player's score dynamically
+    document.getElementById("player-score").textContent = Math.floor(Math.random() * 1000);
+</script> *@

@@ -3,6 +3,7 @@ using DsaGame.BackendApi.Model;
 using DsaGame.BackendApi.Model.Dto;
 using DsaGame.BackendApi.Service.IService;
 using Microsoft.EntityFrameworkCore;
+using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace DsaGame.BackendApi.Service
 {
@@ -16,7 +17,23 @@ namespace DsaGame.BackendApi.Service
         public async Task <List<ScoreBoard>> GetScoreBordByDate(DateTime date)
         {
             var tomorrow = DateTime.Now.AddDays(1);
-            var scoreBoard = await _db.ScoreBoards.Where(d => d.RecordDate >= date && d.RecordDate < tomorrow).ToListAsync();
+            var scoreBoard = await _db.ScoreBoards
+                .Where(d => d.RecordDate >= date && d.RecordDate < tomorrow)
+                .Include(a => a.ApplicationUser)
+                .Take(10)
+                .OrderByDescending(d => d.Points)
+                .ToListAsync();
+
+            return scoreBoard;
+        }
+
+        public async Task<List<ScoreBoard>> GetTopScoresAsync(int count)
+        {
+            var scoreBoard = await _db.ScoreBoards
+                .Include(a => a.ApplicationUser)
+                .OrderByDescending(a => a.Points)
+                .Take(count)
+                .ToListAsync();
 
             return scoreBoard;
         }

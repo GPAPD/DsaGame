@@ -1,0 +1,36 @@
+﻿using DsaGame.BackendApi.Service.IService;
+using DsaGame.Web.Models.dtos;
+using DsaGame.Web.Service.IService;
+using DsaGame.Web.Utility;
+
+namespace DsaGame.Web.Service
+{
+    public class ScoreData : IScoreData
+    {
+        private readonly IBaseService _baseService;
+        public ScoreData(IBaseService baseService)
+        {
+            _baseService = baseService;
+        }
+
+        public async Task<ResponesDto> GetScoreBordByDate(DateTime date)
+        {
+            return await _baseService.SendAsync(new RequestDto()
+            {
+                ApiType = SD.ApiType.GET,
+                Data = date,
+                Url = SD.BackEndAPI + "/api/score/GetScoreBoardByDate"
+            }, false);
+        }
+
+        public async Task<ResponesDto> GetScoreTopScores(int count)
+        {
+            return await _baseService.SendAsync(new RequestDto()
+            {
+                ApiType = SD.ApiType.GET,
+                Data = count,
+                Url = SD.BackEndAPI + "/api/score/GetTopScores"
+            });
+        }
+    }
+}

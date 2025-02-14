@@ -20,7 +20,7 @@ namespace DsaGame.Web.Service
             {
                 ApiType = SD.ApiType.POST,
                 Data = registrationDto,
-                Url = SD.AuthAPIBase + "/api/auth/assign_role"
+                Url = SD.BackEndAPI + "/api/auth/assign_role"
             });
         }
 
@@ -30,7 +30,7 @@ namespace DsaGame.Web.Service
             {
                 ApiType = SD.ApiType.POST,
                 Data = logInRequestDto,
-                Url = SD.AuthAPIBase + "/api/auth/login"
+                Url = SD.BackEndAPI + "/api/auth/login"
             }, withBearer: false);
         }
 
@@ -40,7 +40,7 @@ namespace DsaGame.Web.Service
             {
                 ApiType = SD.ApiType.POST,
                 Data = registrationDto,
-                Url = SD.AuthAPIBase + "/api/auth/register"
+                Url = SD.BackEndAPI + "/api/auth/register"
             }, withBearer: false);
         }
     }

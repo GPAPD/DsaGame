@@ -1,4 +1,5 @@
 ﻿using Azure;
+using DsaGame.BackendApi.Model;
 using DsaGame.BackendApi.Model.Dto;
 using DsaGame.BackendApi.Service.IService;
 using Microsoft.AspNetCore.Mvc;
@@ -19,18 +20,37 @@ namespace DsaGame.BackendApi.Controllers
         }
 
         //TODO: need to add xml summery in Score bord controller
-        [HttpGet]
-        public async Task<IActionResult> GetScoreBoardByDateAsync(DateTime dateAndTime)
+        [HttpGet("GetScoreBoardByDate")]
+        public async Task<IActionResult> GetScoreBoardByDateAsync([FromBody] DateTime dateAndTime)
         {
-
             if (dateAndTime != null) 
             {
                 var temp = DateTime.Now;
-                var scoreBoard = await _scoreData.GetScoreBordByDate(temp);
+                var scoreBoardList = await _scoreData.GetScoreBordByDate(temp);
 
-                if (scoreBoard.Count > 0 != null)
+                if (scoreBoardList.Count > 0 != null)
                 {
-                    _response.Result = scoreBoard;
+                    List<ScoreBoardResponseDto> scoreBoardResponse = new List<ScoreBoardResponseDto>();
+                    foreach (var score in scoreBoardList) 
+                    {
+                        ScoreBoardResponseDto scoreBord = new()
+                        {
+                            User = new()
+                            {
+                                Id = score.ApplicationUser.Id,
+                                Email = score.ApplicationUser.Email,
+                                Name = score.ApplicationUser.Name,
+                                PhoneNumber = score.ApplicationUser.PhoneNumber
+                            },
+                            ScoreId = score.ScoreId,
+                            GameLevel = score.GameLevel,
+                            IsLegit = score.IsLegit,
+                            Points = score.Points,
+                            RecordDate = score.RecordDate,
+                        };
+                        scoreBoardResponse.Add(scoreBord);
+                    }
+                    _response.Result = scoreBoardResponse;
                     _response.IsSuccess = true;
                     _response.Message = "Successfuly recive the scoreBoard";
                 }
@@ -43,11 +63,50 @@ namespace DsaGame.BackendApi.Controllers
             return Ok(_response);
         }
 
+        [HttpGet("GetTopScores")]
+        public async Task<IActionResult> GetTopScores([FromBody] int count)
+        {
+            var scoreBoardList = await _scoreData.GetTopScoresAsync(count);
 
-        [HttpPost]
+            if (scoreBoardList.Count > 0)
+            {
+                List<ScoreBoardResponseDto> scoreBoardResponse = new List<ScoreBoardResponseDto>();
+                foreach (var score in scoreBoardList)
+                {
+                    ScoreBoardResponseDto scoreBord = new()
+                    {
+                        User = new()
+                        {
+                            Id = score.ApplicationUser.Id,
+                            Email = score.ApplicationUser.Email,
+                            Name = score.ApplicationUser.Name,
+                            PhoneNumber = score.ApplicationUser.PhoneNumber
+                        },
+                        ScoreId = score.ScoreId,
+                        GameLevel = score.GameLevel,
+                        IsLegit = score.IsLegit,
+                        Points = score.Points,
+                        RecordDate = score.RecordDate,
+                    };
+                    scoreBoardResponse.Add(scoreBord);
+                }
+                _response.Result = scoreBoardResponse;
+                _response.IsSuccess = true;
+                _response.Message = "Successfuly recive the scoreBoard";
+            }
+            else
+            {
+                _response.Message = "No Record Found";
+            }
+
+            return Ok(_response);
+        }
+
+
+        [HttpPost("SetScore")]
         public async Task<IActionResult> SetScore([FromBody] SetScore score)
         {
-  
+
             if (score != null)
             {
                 var scoreBoard = await _scoreData.SetNewScore(score);

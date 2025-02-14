@@ -7,5 +7,7 @@ namespace DsaGame.Web.Models
         public BananaResponse? BananaResponse { get; set; }
 
         public int Level { get; set; }
+
+        public string Answer { get; set; }
     }
 }

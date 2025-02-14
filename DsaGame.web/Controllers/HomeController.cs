@@ -1,11 +1,18 @@
+using DsaGame.BackendApi.Service.IService;
 using DsaGame.Web.Models;
 using DsaGame.Web.Models.dtos;
 using DsaGame.Web.Service.IService;
+using DsaGame.Web.Utility;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 using System;
 using System.Diagnostics;
+using System.Linq;
+using System.Reflection;
+using System.Security.Cryptography;
+using System.Text;
+using static System.Net.Mime.MediaTypeNames;
 
 namespace DsaGame.Web.Controllers
 {
@@ -13,11 +20,13 @@ namespace DsaGame.Web.Controllers
 	{
 		private readonly ILogger<HomeController> _logger;
 		private readonly IBananaService _bananaService;
+		private readonly IScoreData _scoreData;
 
-		public HomeController(ILogger<HomeController> logger, IBananaService bananaService) 
+		public HomeController(ILogger<HomeController> logger, IBananaService bananaService, IScoreData scoreData) 
 		{
 			_logger = logger;
 			_bananaService = bananaService;
+			_scoreData = scoreData;
 		}
 
         [Authorize]
@@ -34,30 +43,94 @@ namespace DsaGame.Web.Controllers
 
 
 		[HttpGet]
-        public async Task<IActionResult> MathGameUI(int level = 0) 
+        public async Task<IActionResult> MathGameUI(int level = 1) 
 		{
 			MathGameModel model = new();
+			// banana API call
             var result = await _bananaService.GetBananaApi();
 
-            if (result != null && result.IsSuccess) 
+            if (result != null && result.IsSuccess && result.Result != null) 
 			{
+				//deserializeing banaAPI result
+                model.BananaResponse = JsonConvert.DeserializeObject<BananaResponse>(JsonConvert.SerializeObject(result.Result));
 
-                var obj = JsonConvert.DeserializeObject<BananaResponse>(JsonConvert.SerializeObject(result.Result));
-				model.BananaResponse = obj;
-
+				model.Answer = HashingTheSolution(model.BananaResponse.Solution);
+				model.Level = level;
             }
 
             return PartialView(model);
 		}
 
 		[HttpGet]
-		public async Task<IActionResult> GameOverScreen() 
+		public async Task<IActionResult> GameOverScreen(int userLevel) 
 		{
-			//var model = 
+			if (userLevel > 1) 
+			{
+				int lastLevel = userLevel - 1;
+				int ponts = lastLevel * SD.BasicPoint * 100;
 
-			return PartialView();
+				ScoreModel scoreModel = new ScoreModel();
+            }
+
+            GameOverScreenModel model = new();
+
+			var scoreData = await _scoreData.GetScoreTopScores(10);
+
+			model.ScoreList = JsonConvert.DeserializeObject<List<ScoreModel>>(scoreData.Result.ToString());
+
+            return PartialView(model);
 		}
 
+		[HttpGet]
+		public bool ChecKUserAnswer(string userAnswer, string hashSolution) 
+		{
+			if (!string.IsNullOrEmpty(userAnswer) && !string.IsNullOrEmpty(hashSolution)) 
+			{
+				bool isAnswer = MatchHashValue(userAnswer, hashSolution);
+
+				return isAnswer;
+            }
+
+			return false;
+		}
+
+        #region answer hashing and hash answer checking methords
+
+        /*encode decode .net doc
+        * https://learn.microsoft.com/en-us/dotnet/standard/security/ensuring-data-integrity-with-hash-codes
+        */
+
+		//TODO: Need to add the documentation to this hashing methors 
+        private string HashingTheSolution(string solution) 
+		{
+			if (string.IsNullOrEmpty(solution)) 
+			{
+				return null;
+			}
+
+            byte[] hashValue = SHA256.HashData(Encoding.UTF8.GetBytes(solution));
+            string val = Convert.ToHexString(hashValue);
+
+            return val;
+		}
+
+
+		private bool MatchHashValue(string answer, string hashVal) 
+		{
+			if (answer != null && hashVal != null) 
+			{
+				byte[] sentHashValue = Convert.FromHexString(hashVal);
+
+				var compareHashValue = SHA256.HashData(Encoding.UTF8.GetBytes(answer));
+
+				bool same = sentHashValue.SequenceEqual(compareHashValue);
+
+				return same;
+            }
+		
+			return false;
+		}
+        #endregion
 
     }
 }

@@ -4,45 +4,69 @@
 	<style>
 		.timer {
 			position: absolute;
-			right: 15px;
-			background: rgba(0, 0, 0, 0.8);
+			background: rgba( 255, 225, 53);
 			color: white;
 			padding: 8px 10px;
-			border-radius: 20px;
-			font-size: 16px;
+			border-radius: 50px;
+			font-size: 20px;
 			font-weight: bold;
-			width: 40px;
+			width: 50px;
 			text-align: center;
-			
+			margin:10px;
 		}
 
-		.game-level {
-			left: 15px;
-			font-size: 16px;
+		#game-level {
+			position: absolute;
+			right:50%;
+			font-size: 25px;
 			font-weight: bold;
 			text-align: center;
 			padding-bottom:20px;
+			justify-content: center;
+			color: white;
+		}
+
+		.image-container {
+			height: 100vh; /* Set a fixed height */
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			overflow: hidden;
+			background-size: 110% 110%;
+			background-image: url('assets/game-ui-bg.jpg');
+		}
+
+		.image-container img {
+			max-height: 100%; /* Ensure the image fits within the height */
+			opacity: 0; /* Initially hide the image */
+			transition: opacity 0.5s ease-in-out;
 		}
 
 	</style>
 
 	@if (Model.BananaResponse !=  null) 
-	{
-		<div id="timer" class="timer"></div>
-		<div id="game-level" class="game-level">Level: </div>
-
+	{		
 		<div class="text-center">
-			<div class="row">
 
-				<img src="@Model.BananaResponse.Question" alt="Question" />
+			<div id="game-level" class="game-level">Level:@Model.Level </div>
+			<div id="timer" class="timer"></div>
 
-			</div>
-			<div class="row">
-				<div class="col-md-2 offset-md-2 pt-5">
-					<input placeholder="Answer" type="number" />
+			<div class="image-container">
+
+				<div class="row">
+					<img src="@Model.BananaResponse.Question" alt="Question" onload="this.style.opacity=1;" />
+					<input type="hidden" id="banana_key" value="@Model.Answer"/>
+					<input type="hidden" id="level-user" value="@Model.Level" />
+					<input type="hidden" id="banana_answer" value="@Model.BananaResponse.Solution"/>
 				</div>
-				<div class="col-md-2 offset-md-4 pt-5">
-					<input class="btn btn-success" value="Submit" type="button" onclick="CheckAnswer()" />
+
+				<div class="row">
+					<div class="col-md-2 offset-md-2 p-5">
+						<input placeholder="Answer" id="user_answer" type="number" />
+					</div>
+					<div class="col-md-2 offset-md-4 p-5">
+						<input class="btn btn-success" value="Submit" type="button" onclick="checkAnswer()" />
+					</div>
 				</div>
 			</div>
 		</div>

@@ -2,6 +2,7 @@ using DsaGame.Web.Service.IService;
 using DsaGame.Web.Service;
 using DsaGame.Web.Utility;
 using Microsoft.AspNetCore.Authentication.Cookies;
+using DsaGame.BackendApi.Service.IService;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -13,7 +14,7 @@ builder.Services.AddHttpClient();
 
 builder.Services.AddHttpClient<IAuthService, AuthService>();
 
-SD.AuthAPIBase = builder.Configuration["ServiceUrls:BackendApi"];
+SD.BackEndAPI = builder.Configuration["ServiceUrls:BackendApi"];
 SD.BananaAPIBase = builder.Configuration["ServiceUrls:BananaApi"];
 
 
@@ -21,6 +22,7 @@ builder.Services.AddScoped<ITokenProvider, TokenProvider>();
 builder.Services.AddScoped<IBaseService, BaseService>();
 builder.Services.AddScoped<IAuthService, AuthService>();
 builder.Services.AddScoped<IBananaService, BananaService>();
+builder.Services.AddScoped<IScoreData, ScoreData>();
 
 //Save Cookie
 builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)

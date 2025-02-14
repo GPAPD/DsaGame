@@ -9,9 +9,10 @@
         display: flex;
         justify-content: center;
         align-items: center;
-        background: linear-gradient(45deg, #0f0c29, #302b63, #24243e);
-        background-size: 400% 400%;
-        animation: backgroundAnimation 8s infinite alternate;
+        /* background: linear-gradient(45deg, #0f0c29, #302b63, #24243e); */
+		background-image: url('/assets/startgamebg.jpg');
+        background-size: 110% 110%;
+        /*  animation: backgroundAnimation 8s infinite alternate; */
         position: relative;
         text-align: center;
         color: #fff;
@@ -29,6 +30,7 @@
         font-weight: bold;
         text-transform: uppercase;
         letter-spacing: 4px;
+        color: #3f2d11;
         text-shadow: 0 0 10px rgba(255, 255, 255, 0.8), 0 0 20px rgba(255, 255, 255, 0.6);
         animation: glow 2s ease-in-out infinite alternate;
     }
@@ -69,13 +71,6 @@
         box-shadow: 0 0 30px rgba(255, 75, 43, 1);
     }
 
-    /* Footer small text */
-    .footer-text {
-        position: absolute;
-        bottom: 10px;
-        font-size: 0.9rem;
-        opacity: 0.7;
-    }
 </style>
 <div id="game-ui-container">
     <div class="game-screen">
@@ -87,7 +82,7 @@
                 <button class="start-button" onclick="startGame()">Start Game</button>
             </a>
 
-            <p class="footer-text">Ensure your sound is on for the best experience.</p>
+            
         </div>
     </div>
 
