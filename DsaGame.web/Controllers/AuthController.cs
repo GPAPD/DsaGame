@@ -104,6 +104,13 @@ namespace DsaGame.Web.Controllers
         }
 
 
+        [HttpGet]
+        public async Task<IActionResult> Profile()
+        {
+
+            return PartialView();
+        }
+
 
         public async Task<ActionResult> LogOut()
         {

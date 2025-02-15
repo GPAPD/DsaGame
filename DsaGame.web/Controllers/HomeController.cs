@@ -81,7 +81,7 @@ namespace DsaGame.Web.Controllers
             return PartialView(model);
 		}
 
-		[HttpGet]
+        [HttpGet]
 		public bool ChecKUserAnswer(string userAnswer, string hashSolution) 
 		{
 			if (!string.IsNullOrEmpty(userAnswer) && !string.IsNullOrEmpty(hashSolution)) 

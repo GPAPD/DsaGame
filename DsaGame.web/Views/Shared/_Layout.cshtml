@@ -26,9 +26,6 @@
                         </li> *@
                     </ul>
                     <ul class="navbar-nav">
-                        @{
-                            var temp = User;
-                        }
                         @if (!User.Identity.IsAuthenticated)
                         {
                             <li class="nav-item ">
@@ -41,6 +38,11 @@
                         }
                         else 
                         {
+                            
+                            <li class="nav-item ">
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Auth" asp-action="Profile">@User.Identity.Name</a>
+                            </li>
+
                             <li class="nav-item ">
                                 <a class="nav-link text-dark" asp-area="" asp-controller="Auth" asp-action="Logout">Log out</a>
                             </li>
