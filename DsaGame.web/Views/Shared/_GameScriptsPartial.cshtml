@@ -23,7 +23,7 @@
                 level:current_level
             },
             success: function(data) {
-                alert("success");
+                //alert("success");
                 $("#game-ui-container").html(data);
                 // console.log(60/current_level);
                 // console.log(current_level);
@@ -52,7 +52,7 @@
                 if (timeLeft <= 0) {
                     clearInterval(countdown);
                     timerElement.text("0");
-                    //gameOverScreen();
+                    gameOverScreen();
                 }
             }, 1000);
         }
@@ -89,6 +89,8 @@
         var solution = $("#banana_key").val();
         var level = parseInt($("#level-user").val());
 
+        var myModal = $('#my-model');
+
         if(answer != null)
         {
             $.ajax({
@@ -105,13 +107,15 @@
                     console.log(typeof(level));
                     if(data == true)
                     {
-                        alert("Your Answer Is Correct!");
-                        fetchBananaApi(level + 1);
+                       // alert("Your Answer Is Correct!");
+                        myModal.show();
+                        gameModel("You are correct", false, myModal, level);
+                        
                     }
                     else
                     {
                       // alert("Game Over!");
-                       gameOverScreen();
+                        gameModel("Game Over", true, myModal, level);
                        //$("#game-ui-container").html(data);
                     }
 
@@ -124,6 +128,29 @@
         
         }
                 
+    }
+
+    function gameModel(modelBodyTxt, gameOver, myModal, level)
+    {
+        var modelBodyText = $('#model_body');
+        modelBodyText.html("<h1>" + modelBodyTxt + "</h1>");
+        
+        if(gameOver === false)
+        {
+            $("#btn_set_next_level").click(function(){
+                console.log("-------------")
+                myModal.hide();
+                fetchBananaApi(level+1);
+            });
+        }
+        else
+        {
+            $("#btn_set_next_level").click(function(){
+                console.log("-------------")
+                myModal.hide();
+                gameOverScreen();
+            });
+        }      
     }
 
 
