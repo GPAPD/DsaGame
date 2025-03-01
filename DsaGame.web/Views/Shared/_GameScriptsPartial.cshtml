@@ -69,6 +69,7 @@
     {
         timerPause =true;
     }
+
     //continue  timer
     function continueTimer()
     {
@@ -76,14 +77,15 @@
     }
 
     // Game Over Screen
-    function gameOverScreen(user_level) 
+    function gameOverScreen() 
     {
+        var gameLevel = parseInt($("#level-user").val());
         $.ajax({
             url: "Home/GameOverScreen",
             type: "GET",
             data:
             {
-                userLevel : user_level
+                userLevel : gameLevel
             },
             success: function(data) 
             {
@@ -132,6 +134,7 @@
                     else
                     {
                       // alert("Game Over!");
+                      myModal.show();
                         gameModel("Game Over!", true, myModal, level);
                        //$("#game-ui-container").html(data);
                     }
@@ -155,6 +158,7 @@
         if(gameOver === false)
         {
             $("#btn_set_next_level").click(function(){
+                $(this).text('Next Level');
                 console.log("-------------")
                 myModal.hide();
                 fetchBananaApi(level+1);
@@ -163,7 +167,9 @@
         else
         {
             $("#btn_set_next_level").click(function(){
-                console.log("-------------")
+                $(this).text('Score Bord');
+                console.log("-------------",level)
+                console.log(typeof(level));
                 myModal.hide();
                 gameOverScreen();
             });

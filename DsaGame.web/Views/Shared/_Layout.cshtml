@@ -6,7 +6,8 @@
     <title>@ViewData["Title"] - MathGame</title>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
-    <link rel="stylesheet" href="~/MathGame.styles.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/gamestyles.css" asp-append-version="true" />
+    @* <link rel="stylesheet" href="~/MathGame.styles.css" asp-append-version="true" /> *@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/2.1.4/toastr.css" integrity="sha512-oe8OpYjBaDWPt2VmSFR+qYOdnTjeV9QPLJUeqZyprDEQvQLJ9C5PCFclxwNuvb/GQgQngdCXzKSFltuHD3eCxA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     @await RenderSectionAsync("Headers", required: false)
 </head>
@@ -54,6 +55,11 @@
     </header>
     <div class="container">
         <main role="main" class="pb-3 min-vh-100">
+            <audio id="bg-music" autoplay loop>
+                <source src="/assets/audio/backgroundMusic.mp3" type="audio/mp3">
+                Your browser does not support the audio element.
+            </audio>
+
             @RenderBody()
             <partial name="_NotificationPartial" />
         </main>
