@@ -27,6 +27,7 @@
                 $("#game-ui-container").html(data);
                 // console.log(60/current_level);
                 // console.log(current_level);
+                continueTimer();
                 displayTimer((60/current_level)); // Display timer when UI is fetched
             },
             error: function()
@@ -35,6 +36,7 @@
             }
         });
     }
+    var timerPause = false;
 
     // Set game time
     function displayTimer(time) 
@@ -44,20 +46,33 @@
 
         timerElement.text(timeLeft); // Set initial timer value
 
+        //start timer
         function startTimer() {
             const countdown = setInterval(() => {
-                timeLeft--;
-                timerElement.text(timeLeft); // Update the timer value
+                if (timerPause != true) {
+                    timeLeft--;
+                    timerElement.text(timeLeft); // Update the timer value
 
-                if (timeLeft <= 0) {
-                    clearInterval(countdown);
-                    timerElement.text("0");
-                    gameOverScreen();
+                    if (timeLeft <= 0) {
+                        clearInterval(countdown);
+                        timerElement.text("0");
+                        gameOverScreen();
+                    }
                 }
             }, 1000);
         }
-
         startTimer();
+    }
+
+     //pause timer
+    function pauseTimer()
+    {
+        timerPause =true;
+    }
+    //continue  timer
+    function continueTimer()
+    {
+        timerPause =false;
     }
 
     // Game Over Screen
@@ -108,14 +123,16 @@
                     if(data == true)
                     {
                        // alert("Your Answer Is Correct!");
+                        pauseTimer();
                         myModal.show();
-                        gameModel("You are correct", false, myModal, level);
+                        gameModel("You are correct!", false, myModal, level);
+                        
                         
                     }
                     else
                     {
                       // alert("Game Over!");
-                        gameModel("Game Over", true, myModal, level);
+                        gameModel("Game Over!", true, myModal, level);
                        //$("#game-ui-container").html(data);
                     }
 
