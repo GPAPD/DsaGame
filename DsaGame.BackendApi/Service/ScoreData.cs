@@ -42,11 +42,12 @@ namespace DsaGame.BackendApi.Service
         {
             try
             {
-                if (score != null && score.UserId != null)
+                var user = _db.ApplicationUsers.FirstOrDefault(a => a.Email.ToLower() == score.ApplicationUser.Email.ToLower());
+                if (score != null && score.ApplicationUser != null)
                 {
                     ScoreBoard scoreBoard = new()
                     {
-                        UserId = score.UserId,
+                        UserId = user.Id,
                         GameLevel = score.GameLevel,
                         IsLegit = score.IsLegit,
                         Points = score.Points,

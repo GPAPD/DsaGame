@@ -1,7 +1,8 @@
-﻿@model GameOverScreenModel
+﻿@using DsaGame.Web.Utility
+@model GameOverScreenModel
 
 <div class="game-over-container">
-    <h1>GAME OVER</h1>
+    <h1>@Model.PageTitle</h1>
 
     <table class="score-table">
         <tr>
@@ -10,30 +11,37 @@
             <th>Level</th>
             <th>Score</th>
         </tr>
-        <tr>
-            @{
-                foreach (var s in Model.ScoreList) 
-                {
-                    if(s.IsLegit)
+
+        @{
+            var rank = 1;
+            foreach (var s in Model.ScoreList) 
+            {   <tr>
+                    @if(s.IsLegit)
                     {
-                        <td>1</td>
+                        <td>@rank</td>
                         <td>@s.User.Name</td>
                         <td >@s.GameLevel</td>
                         <td >@s.Points</td>
                     }
-                }
+                </tr>
+
+                rank++;
             }
-        </tr>
+        }
+
         <!-- Add more rows dynamically if needed -->
     </table>
 
     <button class="retry-btn" onclick="window.location.reload();">
-        Try Again
+        @Model.GameOverPageButtonTitle
     </button>
+    @if (Model.PageTitle == SD.GameOver) 
+    {
+        <div class="subtext">
+            Better luck next time!
+        </div>
+    }
 
-    <div class="subtext">
-        Better luck next time!
-    </div>
 </div>
 
 <style>

@@ -25,8 +25,6 @@
             success: function(data) {
                 //alert("success");
                 $("#game-ui-container").html(data);
-                // console.log(60/current_level);
-                // console.log(current_level);
                 continueTimer();
                 displayTimer((60/current_level)); // Display timer when UI is fetched
             },
@@ -176,5 +174,21 @@
         }      
     }
 
+    function scoreBord()
+    {
+        $.ajax({
+            url: "Home/GameOverScreen",
+            type: "GET",
+            data: 0,
+            success:function(data)
+            {
+                $("#game-ui-container").html(data);
+            },
+            error: function()
+            {
+                alert("error!");
+            }
+        })
+    }
 
 </script>

@@ -1,12 +1,8 @@
-﻿using DsaGame.Web.Models.dtos;
-
-namespace DsaGame.Web.Models
+﻿namespace DsaGame.BackendApi.Model.Dto
 {
-    public class ScoreModel
+    public class SetNewScore
     {
-        public string Email { get; set; }
-
-        public UserDto User { get; set; }
+        public string? Email { get; set; }
 
         public int GameLevel { get; set; }
 

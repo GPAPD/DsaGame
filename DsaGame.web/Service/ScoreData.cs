@@ -1,4 +1,6 @@
-﻿using DsaGame.BackendApi.Service.IService;
+﻿using DsaGame.BackendApi.Model.Dto;
+using DsaGame.BackendApi.Service.IService;
+using DsaGame.Web.Models;
 using DsaGame.Web.Models.dtos;
 using DsaGame.Web.Service.IService;
 using DsaGame.Web.Utility;
@@ -30,6 +32,16 @@ namespace DsaGame.Web.Service
                 ApiType = SD.ApiType.GET,
                 Data = count,
                 Url = SD.BackEndAPI + "/api/score/GetTopScores"
+            });
+        }
+
+        public async Task<ResponesDto> SetNewScore(ScoreModel score)
+        {
+            return await _baseService.SendAsync(new RequestDto()
+            {
+                ApiType = SD.ApiType.POST,
+                Data = score,
+                Url = SD.BackEndAPI + "/api/score/SetScore"
             });
         }
     }

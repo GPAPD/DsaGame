@@ -6,13 +6,9 @@ using DsaGame.Web.Utility;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
-using System;
 using System.Diagnostics;
-using System.Linq;
-using System.Reflection;
 using System.Security.Cryptography;
 using System.Text;
-using static System.Net.Mime.MediaTypeNames;
 
 namespace DsaGame.Web.Controllers
 {
@@ -64,18 +60,33 @@ namespace DsaGame.Web.Controllers
 		[HttpGet]
 		public async Task<IActionResult> GameOverScreen(int userLevel) 
 		{
-			if (userLevel > 1) 
-			{
-				int lastLevel = userLevel - 1;
-				int ponts = lastLevel * SD.BasicPoint * 100;
-
-				ScoreModel scoreModel = new ScoreModel();
-            }
-
             GameOverScreenModel model = new();
 
-			var scoreData = await _scoreData.GetScoreTopScores(10);
+			if (userLevel > 1)
+			{
+				int lastLevel = userLevel - 1;
+				int ponts = lastLevel * SD.BasicPoint;
 
+				ScoreModel scoreModel = new ScoreModel
+				{
+					Email = User.Identity.Name,
+					GameLevel = userLevel,
+					Points = ponts,
+					IsLegit = true,
+					RecordDate = DateTime.Now,
+				};
+
+				var data = await _scoreData.SetNewScore(scoreModel);
+
+                model.PageTitle = SD.GameOver;
+                model.GameOverPageButtonTitle = SD.TryAgain;
+            }
+			else 
+			{
+				model.PageTitle = SD.ScoreBoard;
+				model.GameOverPageButtonTitle = SD.Home;
+            }
+			var scoreData = await _scoreData.GetScoreTopScores(10);
 			model.ScoreList = JsonConvert.DeserializeObject<List<ScoreModel>>(scoreData.Result.ToString());
 
             return PartialView(model);

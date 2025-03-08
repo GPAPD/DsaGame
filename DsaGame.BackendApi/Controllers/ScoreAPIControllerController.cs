@@ -104,12 +104,24 @@ namespace DsaGame.BackendApi.Controllers
 
 
         [HttpPost("SetScore")]
-        public async Task<IActionResult> SetScore([FromBody] SetScore score)
+        public async Task<IActionResult> SetScore([FromBody] SetNewScore score)
         {
 
             if (score != null)
             {
-                var scoreBoard = await _scoreData.SetNewScore(score);
+                SetScore scoreDto = new()
+                {
+                    ApplicationUser = new() 
+                    {
+                        Email = score.Email,
+                    },
+                    GameLevel = score.GameLevel,
+                    IsLegit = score.IsLegit,
+                    Points = score.Points,
+                    RecordDate = score.RecordDate,
+                };
+
+                var scoreBoard = await _scoreData.SetNewScore(scoreDto);
 
                 if (scoreBoard)
                 {

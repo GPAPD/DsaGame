@@ -7,5 +7,9 @@ namespace DsaGame.Web.Models
 
         public List<ScoreModel> ScoreList { get; set; }
 
+        public string PageTitle { get; set; }
+
+        public string GameOverPageButtonTitle { get; set; }
+
     }
 }

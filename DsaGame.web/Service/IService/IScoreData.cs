@@ -1,4 +1,4 @@
-﻿
+﻿using DsaGame.Web.Models;
 using DsaGame.Web.Models.dtos;
 
 namespace DsaGame.BackendApi.Service.IService
@@ -8,7 +8,12 @@ namespace DsaGame.BackendApi.Service.IService
         public Task<ResponesDto> GetScoreBordByDate(DateTime date);
         public Task<ResponesDto> GetScoreTopScores(int count);
 
-        ///public Task<ResponesDto> SetNewScore(Score score);
+        /// <summary>
+        /// Set new game score 
+        /// </summary>
+        /// <param name="score"></param>
+        /// <returns></returns>
+        public Task<ResponesDto> SetNewScore(ScoreModel score);
 
     }
 }
