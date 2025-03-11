@@ -29,6 +29,7 @@
 		.image-container {
 			height: 100vh; /* Set a fixed height */
 			display: flex;
+			flex-wrap: wrap;
 			justify-content: center;
 			align-items: center;
 			overflow: hidden;
@@ -42,6 +43,60 @@
 			transition: opacity 0.5s ease-in-out;
 		}
 
+		.options {
+			display: flex;
+			justify-content: center;
+			gap: 15px;
+			margin-top: 20px;
+		}
+
+		.drag-txt
+		{
+			color:white;
+		}
+
+		#my-model
+		{
+			align-content: center;
+		}
+
+		.draggable {
+			width: 50px;
+			height: 50px;
+			background: orange;
+			color:white;
+			font-weight: 700;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			font-size: 24px;
+			cursor: grab;
+			border-radius: 10px;
+		}
+
+		.drop-zone {
+			width: 100px;
+			height: 80px;
+			border: 5px dashed white;
+			font-weight:800;
+			color:white;
+			display: inline-flex;
+			align-items: center;
+			justify-content: center;
+			font-size: 24px;
+			margin-top: 20px;
+		}
+
+		.submit-btn {
+			margin-top: 20px;
+			padding: 10px 20px;
+			background: green;
+			color: white;
+			border: none;
+			cursor: pointer;
+			font-size: 18px;
+		}
+
 	</style>
 
 	@if (Model.BananaResponse !=  null) 
@@ -53,7 +108,7 @@
 
 			<div class="image-container">
 
-				<div class="row">
+				<div class="row  pt-lg-5">
 					<img src="@Model.BananaResponse.Question" alt="Question" onload="this.style.opacity=1;" />
 					<input type="hidden" id="banana_key" value="@Model.Answer"/>
 					<input type="hidden" id="level-user" value="@Model.Level" />
@@ -61,10 +116,26 @@
 				</div>
 
 				<div class="row">
-					<div class="col-md-2 offset-md-2 p-5">
-						<input placeholder="Answer" id="user_answer" type="number" />
+					<div class="">
+						<!-- <input placeholder="Answer" id="user_answer" type="number" />-->
+						<h2 class="drag-txt">Drag and Drop Your Answer</h2>
+						<div class="options">
+							<div class="draggable" draggable="true" id="num1">0</div>
+							<div class="draggable" draggable="true" id="num2">1</div>
+							<div class="draggable" draggable="true" id="num3">2</div>
+							<div class="draggable" draggable="true" id="num3">3</div>
+							<div class="draggable" draggable="true" id="num3">4</div>
+							<div class="draggable" draggable="true" id="num3">5</div>
+							<div class="draggable" draggable="true" id="num3">6</div>
+							<div class="draggable" draggable="true" id="num3">7</div>
+							<div class="draggable" draggable="true" id="num3">8</div>
+							<div class="draggable" draggable="true" id="num3">9</div>
+						</div>
+						<br>
+						<div class="drop-zone" id="answer-box">Drop here</div>
+						<br>
 					</div>
-					<div class="col-md-2 offset-md-4 p-5">
+					<div class="mt-2">
 						<input class="btn btn-success" value="Submit" type="button" onclick="checkAnswer()" />
 					</div>
 				</div>
@@ -90,3 +161,32 @@
 	</div>
 
 </div>
+
+
+<script>
+	$(document).ready(function() {
+
+		$('.draggable').on('dragstart', function(e) {
+			e.originalEvent.dataTransfer.setData('text', $(this).text());
+		});
+
+		$('.drop-zone').on('dragover', function(e) {
+			e.preventDefault();
+		});
+
+		$('.drop-zone').on('drop', function(e) {
+			e.preventDefault();
+			var data = e.originalEvent.dataTransfer.getData('text');
+			$(this).text(data);
+		});
+
+		$('#submit-btn').on('click', function() {
+			var answer = $('#answer-box').text();
+			if (answer === '7') { // Example correct answer
+				alert('Correct Answer!');
+			} else {
+				alert('Wrong Answer! Try Again.');
+			}
+		});
+	});
+</script>

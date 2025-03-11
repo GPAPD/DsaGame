@@ -26,7 +26,7 @@
                 //alert("success");
                 $("#game-ui-container").html(data);
                 continueTimer();
-                displayTimer((60/current_level)); // Display timer when UI is fetched
+                displayTimer((60)); // Display timer when UI is fetched
             },
             error: function()
             {
@@ -44,6 +44,8 @@
 
         timerElement.text(timeLeft); // Set initial timer value
 
+             //pause timer
+                pauseTimer();
         //start timer
         function startTimer() {
             const countdown = setInterval(() => {
@@ -100,10 +102,10 @@
     function checkAnswer()
     {
         // get input vals
-        var answer = $("#user_answer").val();
+        var answer = $('#answer-box').text();;
         var solution = $("#banana_key").val();
         var level = parseInt($("#level-user").val());
-
+        console.log(answer);
         var myModal = $('#my-model');
 
         if(answer != null)
@@ -190,5 +192,4 @@
             }
         })
     }
-
 </script>
