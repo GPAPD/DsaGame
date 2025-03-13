@@ -1,0 +1,322 @@
+﻿/*Game UI styles starts*/ 
+.timer {
+    position: absolute;
+    background: rgba( 255, 225, 53);
+    color: white;
+    padding: 8px 10px;
+    border-radius: 50px;
+    font-size: 20px;
+    font-weight: bold;
+    width: 50px;
+    text-align: center;
+    margin: 10px;
+}
+
+#game-level {
+    position: absolute;
+    right: 50%;
+    font-size: 25px;
+    font-weight: bold;
+    text-align: center;
+    padding-bottom: 20px;
+    justify-content: center;
+    color: white;
+}
+
+.image-container {
+    height: 100vh;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    background-size: 110% 110%;
+
+    background-image: url('../assets/game-ui-bg.jpg');
+}
+
+.image-container img {
+    max-height: 100%;
+    opacity: 0;
+    transition: opacity 0.5s ease-in-out;
+}
+
+.options {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin-top: 20px;
+}
+
+.drag-txt {
+    color: white;
+}
+
+#my-model {
+    align-content: center;
+}
+
+.draggable {
+    width: 50px;
+    height: 50px;
+    background: orange;
+    color: white;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 24px;
+    cursor: grab;
+    border-radius: 10px;
+}
+
+.drop-zone {
+    width: 100px;
+    height: 80px;
+    border: 5px dashed white;
+    font-weight: 800;
+    color: white;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 24px;
+    /* margin-top: 20px; */
+}
+
+.submit-btn {
+    padding: 10px 20px;
+    background: green;
+    color: white;
+    border: none;
+    cursor: pointer;
+    font-size: 20px;
+    font-weight: 700;
+}
+
+/*Game UI styles ends*/
+
+/*home page styles starts*/
+.game-screen {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* background: linear-gradient(45deg, #0f0c29, #302b63, #24243e); */
+    background-image: url('../assets/startgamebg.jpg');
+    background-size: 110% 110%;
+    /*  animation: backgroundAnimation 8s infinite alternate; */
+    position: relative;
+    text-align: center;
+    color: #fff;
+}
+
+/* Background animation */
+@@keyframes backgroundAnimation {
+    0% {
+        background-position: 0% 50%;
+    }
+
+    100% {
+        background-position: 100% 50%;
+    }
+}
+
+/* Glowing title effect */
+.game-title {
+    font-size: 3rem;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 4px;
+    color: white;
+    font-weight: 900;
+    text-shadow: 0 0 10px rgba(0, 0, 0, 0.8), 0 0 20px rgba(0, 0, 0, 0.6);
+    animation: glow 2s ease-in-out infinite alternate;
+}
+
+@@keyframes glow {
+    0% {
+        text-shadow: 0 0 10px rgba(0, 0, 0, 0.8), 0 0 20px rgba(0, 0, 0, 0.6);
+    }
+
+    100% {
+        text-shadow: 0 0 20px rgba(0, 0, 0, 1), 0 0 30px rgba(0, 0, 0, 0.9);
+    }
+}
+
+/* Animated floating text */
+.floating-text {
+    font-size: 1.2rem;
+    opacity: 0.8;
+    animation: floatText 3s ease-in-out infinite alternate;
+}
+
+@@keyframes floatText {
+    0% {
+        transform: translateY(0px);
+    }
+
+    100% {
+        transform: translateY(-10px);
+    }
+}
+
+/* Glowing start button */
+.start-button {
+    font-size: 1.5rem;
+    font-weight: bold;
+    padding: 15px 40px;
+    border: none;
+    border-radius: 50px;
+    background: linear-gradient(45deg, #ff416c, #ff4b2b);
+    color: white;
+    cursor: pointer;
+    box-shadow: 0 0 20px rgba(255, 75, 43, 0.8);
+    transition: all 0.3s ease-in-out;
+}
+
+.start-button:hover {
+    transform: scale(1.1);
+    box-shadow: 0 0 30px rgba(255, 75, 43, 1);
+}
+
+ul {
+    list-style-type: none;
+}
+/*home page styles ends*/
+
+
+/* game over style starts*/
+.game-over-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 100vh; /* Set a fixed height */
+    overflow: hidden;
+    background-size: 110% 110%;
+    background-image: url('../assets/gameoverbg.jpg');
+    color: white;
+}
+
+h1 {
+    font-size: 48px;
+    margin-bottom: 20px;
+    text-transform: uppercase;
+    text-shadow: 0 0 10px rgba(0, 0, 0, 0.8);
+    font-weight: 800;
+}
+
+.score-table {
+    margin-bottom: 20px;
+    border-collapse: collapse;
+    width: 80%;
+    max-width: 400px;
+    text-align: center;
+    color: white;
+    font-size: 20px;
+    font-weight: 700;
+}
+
+.score-table th, .score-table td {
+    border: 1px solid #fff;
+    padding: 20px;
+}
+
+.score-table th {
+    background-color: #ff5858;
+    color: #fff;
+}
+
+.retry-btn {
+    background: #ff5858;
+    border: none;
+    border-radius: 30px;
+    padding: 15px 30px;
+    font-size: 18px;
+    font-weight: 600;
+    color: #fff;
+    cursor: pointer;
+    text-transform: uppercase;
+    transition: 0.3s ease;
+    box-shadow: 0 0 15px rgba(255, 88, 88, 0.6);
+}
+
+.retry-btn:hover {
+    background: #ff3b3b;
+    box-shadow: 0 0 20px rgba(255, 59, 59, 0.8);
+}
+
+.subtext {
+    margin-top: 20px;
+    font-size: 14px;
+    opacity: 0.8;
+}
+
+/* game over style ends*/
+
+/*login styles starts*/
+.sigin-container {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* background-image: url('/assets/startgamebg.jpg'); */
+    background-image: url('../assets/sigup-image.jpg');
+    background-size: 110% 110%;
+    position: relative;
+    text-align: center;
+    color: #fff;
+}
+
+#reg_form {
+    color: white;
+    font-weight: 600;
+    text-shadow: 0 0 10px rgba(0, 0, 0, 0.8);
+}
+
+#reg_form a {
+    text-decoration: none;
+}
+
+#reg_form a:hover {
+    color: red;
+}
+
+.title-login h1 {
+    font-weight: 700;
+    font-size: 50px;
+    text-shadow: 0 0 10px rgba(0, 0, 0, 0.8);
+}
+
+/*login styles ends*/
+
+/*register styles starts*/
+.register-container {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* background-image: url('/assets/startgamebg.jpg'); */
+    background-image: url('../assets/register-form-image.jpg');
+    background-size: 110% 110%;
+    position: relative;
+    text-align: center;
+    color: #fff;
+}
+
+.register-form-title {
+    font-weight: 700;
+    color: white;
+}
+#reg-to-login {
+    color: white;
+    font-weight: 600;
+    text-shadow: 0 0 10px rgba(0, 0, 0, 0.8);
+}
+#reg-to-login a {
+    text-decoration: none;
+}
+#reg-to-login a:hover {
+    color: red;
+}
+
+/*register styles ends*/

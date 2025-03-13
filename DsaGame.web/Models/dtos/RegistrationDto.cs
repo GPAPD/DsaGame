@@ -13,6 +13,6 @@ namespace DsaGame.Web.Models.dtos
         [Required]
         public string Password { get; set; }
 
-        public string? Role { get; set; }
+        public string? Role { get; set; } = "CUSTOMER";
     }
 }
