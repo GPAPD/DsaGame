@@ -102,7 +102,7 @@ namespace DsaGame.BackendApi.Controllers
             return Ok(_response);
         }
 
-
+        //Set Score Api
         [HttpPost("SetScore")]
         public async Task<IActionResult> SetScore([FromBody] SetNewScore score)
         {
@@ -133,6 +133,47 @@ namespace DsaGame.BackendApi.Controllers
                 {
                     _response.Message = "Api call faild. An error occurred while seting a new score";
                 }
+            }
+
+            return Ok(_response);
+        }
+
+
+        //Get Personal Score Api
+        [HttpGet("GetPersonalScore")]
+        public async Task<IActionResult> GetPersonalScore([FromBody] string email) 
+        {
+            var prScore = await _scoreData.GetPersonalScore(email);
+
+            if (prScore.Count >0)
+            {
+                List<ScoreBoardResponseDto> scoreBoardResponse = new List<ScoreBoardResponseDto>();
+                foreach (var score in prScore)
+                {
+                    ScoreBoardResponseDto scoreBord = new()
+                    {
+                        User = new()
+                        {
+                            Id = score.ApplicationUser.Id,
+                            Email = score.ApplicationUser.Email,
+                            Name = score.ApplicationUser.Name,
+                            PhoneNumber = score.ApplicationUser.PhoneNumber
+                        },
+                        ScoreId = score.ScoreId,
+                        GameLevel = score.GameLevel,
+                        IsLegit = score.IsLegit,
+                        Points = score.Points,
+                        RecordDate = score.RecordDate,
+                    };
+                    scoreBoardResponse.Add(scoreBord);
+                }
+                _response.Result = scoreBoardResponse;
+                _response.IsSuccess = true;
+                _response.Message = "Successfuly recive the scoreBoard";
+            }
+            else
+            {
+                _response.Message = "No Record Found";
             }
 
             return Ok(_response);

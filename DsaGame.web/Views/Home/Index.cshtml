@@ -7,15 +7,25 @@
         <div>
             <h1 class="game-title">Welcome to Math is Fun!</h1>
             @* <p class="floating-text">Are you ready for an exciting adventure?</p> *@
-            <ul>
+            <ul class="game-ui-home-list">
                 <li class="mt-5">
                     <a>
                         <button class="start-button" onclick="startGame()">Start Game</button>
+                    </a>
+                </li>                
+                <li class="mt-5">
+                    <a>
+                        <input type="button" class="start-button home-htp" onclick="@("window.location.href='" + @Url.Action("PersonalBest", "Home") + "'");" value="Personal Records" />
                     </a>
                 </li>
                 <li class="mt-5">
                     <a>
                         <button class="start-button" onclick="scoreBord()">Score Bord</button>
+                    </a>
+                </li>                
+                <li class="mt-5">
+                    <a>
+                        <input type="button" class="start-button home-htp" onclick="@("window.location.href='" + @Url.Action("HowToPlay", "Home") + "'");" value="How To Play" />
                     </a>
                 </li>
 

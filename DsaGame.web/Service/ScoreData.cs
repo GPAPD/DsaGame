@@ -4,6 +4,7 @@ using DsaGame.Web.Models;
 using DsaGame.Web.Models.dtos;
 using DsaGame.Web.Service.IService;
 using DsaGame.Web.Utility;
+using static System.Formats.Asn1.AsnWriter;
 
 namespace DsaGame.Web.Service
 {
@@ -44,5 +45,16 @@ namespace DsaGame.Web.Service
                 Url = SD.BackEndAPI + "/api/score/SetScore"
             });
         }
+
+        public async Task<ResponesDto> GetPersonalScore(string email)
+        {
+            return await _baseService.SendAsync(new RequestDto()
+            {
+                ApiType = SD.ApiType.GET,
+                Data = email,
+                Url = SD.BackEndAPI + "/api/score/GetPersonalScore"
+            });
+        }
+
     }
 }

@@ -1,0 +1,39 @@
+﻿@model GameOverScreenModel
+
+
+<div class="rersonal-rec-container">
+    <h1>Personal Best</h1>
+
+    <table class="score-pr-table">
+        <tr>
+            <th>Rank</th>
+            <th>Player</th>
+            <th>Level</th>
+            <th>Score</th>
+            <th>Date</th>
+        </tr>
+
+        @{
+            var rank = 1;
+            foreach (var s in Model.ScoreList)
+            {
+                <tr>
+                    @if (s.IsLegit)
+                    {
+                        <td>@rank</td>
+                        <td>@s.User.Name</td>
+                        <td>@s.GameLevel</td>
+                        <td>@s.Points</td>
+                        <td>@s.RecordDate</td>
+                    }
+                </tr>
+
+                rank++;
+            }
+        }
+
+        <!-- Add more rows dynamically if needed -->
+    </table>
+
+    <a class="retry-btn" href="~/home/index">Home</a>
+</div>

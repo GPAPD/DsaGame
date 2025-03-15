@@ -105,6 +105,30 @@ namespace DsaGame.Web.Controllers
 			return false;
 		}
 
+		/// <summary>
+		/// This Action will return the how to play ui
+		/// </summary>
+		/// <returns></returns>
+		public IActionResult HowToPlay() 
+		{
+
+			return View();
+		}
+
+        [Authorize]
+        public async Task<IActionResult> PersonalBest() 
+		{
+            GameOverScreenModel model = new();
+			var email = User.Identity.Name;
+			var scoreData = await _scoreData.GetPersonalScore(email);
+			if (scoreData.Result != null) 
+			{
+                model.ScoreList = JsonConvert.DeserializeObject<List<ScoreModel>>(scoreData.Result.ToString());
+            }
+
+            return View(model);
+		}
+
         #region answer hashing and hash answer checking methords
 
         /*encode decode .net doc

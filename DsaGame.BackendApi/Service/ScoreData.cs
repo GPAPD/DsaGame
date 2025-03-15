@@ -14,6 +14,7 @@ namespace DsaGame.BackendApi.Service
         {
             _db = db;
         }
+        //Get Score bord By Date
         public async Task <List<ScoreBoard>> GetScoreBordByDate(DateTime date)
         {
             var tomorrow = DateTime.Now.AddDays(1);
@@ -27,17 +28,27 @@ namespace DsaGame.BackendApi.Service
             return scoreBoard;
         }
 
+        //Get Top 10 Scores
         public async Task<List<ScoreBoard>> GetTopScoresAsync(int count)
         {
-            var scoreBoard = await _db.ScoreBoards
-                .Include(a => a.ApplicationUser)
-                .OrderByDescending(a => a.Points)
-                .Take(count)
-                .ToListAsync();
+            try
+            {
+                var scoreBoard = await _db.ScoreBoards
+                    .Include(a => a.ApplicationUser)
+                    .OrderByDescending(a => a.Points)
+                    .Take(count)
+                    .ToListAsync();
 
-            return scoreBoard;
+                return scoreBoard;
+
+            }
+            catch (Exception ex) 
+            {
+                return null;
+            }
         }
 
+        //Set New Score
         public async Task<bool> SetNewScore(SetScore score)
         {
             try
@@ -65,5 +76,27 @@ namespace DsaGame.BackendApi.Service
             }
             return false;
         }
+
+
+
+        //Personal Score Data
+        public async Task<List<ScoreBoard>> GetPersonalScore(string Email)
+        {
+            try
+            {
+                var scoreBord = await _db.ScoreBoards.Include(u => u.ApplicationUser)
+                    .Where(a => a.ApplicationUser.Email == Email)
+                    .OrderByDescending(a => a.Points)
+                    .Take(10)
+                    .ToListAsync();
+
+                return scoreBord;
+            }
+            catch (Exception e) 
+            {
+                return null;
+            }
+        }
+
     }
 }

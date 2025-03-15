@@ -15,5 +15,7 @@ namespace DsaGame.BackendApi.Service.IService
         /// <returns></returns>
         public Task<ResponesDto> SetNewScore(ScoreModel score);
 
+        public Task<ResponesDto> GetPersonalScore(string email);
+
     }
 }

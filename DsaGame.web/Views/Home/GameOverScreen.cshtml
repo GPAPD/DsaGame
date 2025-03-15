@@ -18,7 +18,27 @@
             {   <tr>
                     @if(s.IsLegit)
                     {
-                        <td>@rank</td>
+                        <td>
+                            @if (rank == 1)
+                            {
+                                <img src="~/assets/ranking-img/1st-palce.png" alt="1st place" width="50%" />
+                                @rank
+                            }
+                            else if (rank == 2)
+                            {
+                                <img src="~/assets/ranking-img/2nd-place.png" alt="2nd place" width="50%" />
+                                @rank
+                            }
+                            else if (rank == 3)
+                            {
+                                <img src="~/assets/ranking-img/3rd-place.png" alt="3rd place" width="50%" />
+                                @rank
+                            }
+                            else
+                            {
+                                @rank
+                            }
+                        </td>
                         <td>@s.User.Name</td>
                         <td >@s.GameLevel</td>
                         <td >@s.Points</td>

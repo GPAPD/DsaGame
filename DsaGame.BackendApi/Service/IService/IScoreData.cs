@@ -11,5 +11,12 @@ namespace DsaGame.BackendApi.Service.IService
 
         public Task<bool> SetNewScore(SetScore score);
 
+        /// <summary>
+        /// This methord is to get personal score data
+        /// </summary>
+        /// <param name="Email"> string user email</param>
+        /// <returns>ScoreBoard Entity</returns>
+        public Task<List<ScoreBoard>> GetPersonalScore(string Email);
+
     }
 }
