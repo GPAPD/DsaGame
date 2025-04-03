@@ -1,4 +1,4 @@
-🧮 Math Challenge Game
+🧮 Math is fun Game
 
 📌 Overview
 I am a student in sliit city uni and this is my DSA (Distributed Service Architecture) assessment.
