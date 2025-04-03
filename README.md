@@ -77,9 +77,9 @@ User data is securely stored in browser cookies.
 
 🔧 Prerequisites
 
-.NET Core SDK
+.NET 8 SDK
 
-MySQL Database
+MSSQ Database
 
 
 🚀 Steps to Run
@@ -102,9 +102,6 @@ dotnet run --project YourFrontendProject
 
 Feel free to fork this repository and submit pull requests with enhancements or bug fixes.
 
-📜 License
-
-This project is licensed under the MIT License - see the LICENSE file for details.
 
 📧 Contact
 
