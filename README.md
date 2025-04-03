@@ -81,7 +81,6 @@ User data is securely stored in browser cookies.
 
 MySQL Database
 
-Node.js (for frontend dependencies, if applicable)
 
 🚀 Steps to Run
 
@@ -97,7 +96,7 @@ dotnet run
 # Start the frontend application
 dotnet run --project YourFrontendProject
 
-📌 Open the browser and navigate to http://localhost:5000
+📌 Open the browser and navigate to http://localhost
 
 🤝 Contributions
 
